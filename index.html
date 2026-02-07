@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Rose Day, My Love 🌹</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#8b0000;
+  --pink:#ffb6c1;
+  --gold:#d4af37;
+  --black:#0b0b0b;
+  --glass:rgba(255,255,255,0.08);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,var(--black),#000);
+  color:#fff;
+  overflow-x:hidden;
+  cursor:none;
+  position:relative;
+}
+
+/* Cursor Glow */
+.cursor{
+  position:fixed;
+  width:25px;height:25px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--pink),transparent 60%);
+  pointer-events:none;
+  mix-blend-mode:screen;
+  z-index:9999;
+}
+
+/* LIGHT RAYS */
+.light-ray{
+  position:fixed;
+  top:-50%;
+  width:20px;
+  height:200%;
+  background:linear-gradient(to bottom,rgba(255,192,203,0.1),transparent);
+  pointer-events:none;
+  filter:blur(10px);
+  animation:rayMove linear infinite;
+  z-index:1;
+}
+@keyframes rayMove{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(100vw);}
+}
+
+/* PARTICLES */
+.particle{
+  position:fixed;
+  width:3px;height:3px;
+  border-radius:50%;
+  background:rgba(255,182,193,0.6);
+  animation:particleMove linear infinite;
+  z-index:0;
+}
+@keyframes particleMove{
+  0%{transform:translateY(0) translateX(0);}
+  100%{transform:translateY(100vh) translateX(50px);}
+}
+
+/* ROSES */
+.bg-rose{
+  position:fixed;
+  font-size:2rem;
+  top:-10%;
+  z-index:0;
+  opacity:0.7;
+  animation-name:roseFall,sway;
+  animation-timing-function:linear,ease-in-out;
+  animation-iteration-count:infinite,infinite;
+}
+@keyframes roseFall{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(120vh) rotate(360deg);}
+}
+@keyframes sway{
+  0%,100%{transform:translateX(0);}
+  50%{transform:translateX(20px);}
+}
+
+/* LOADER */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+#loader h1{
+  font-family:'Great Vibes',cursive;
+  font-size:2rem;
+  text-align:center;
+  opacity:0;
+  animation:fadeIn 3s forwards;
+}
+.progress{
+  width:200px;height:6px;
+  background:#222;
+  margin-top:30px;
+  overflow:hidden;
+}
+.progress span{
+  display:block;height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--red),var(--pink));
+  animation:load 5s forwards;
+}
+@keyframes load{to{width:100%;}}
+@keyframes fadeIn{to{opacity:1;}}
+
+/* HERO */
+section{padding:100px 20px;position:relative;z-index:2;}
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.hero h1{
+  font-family:'Great Vibes',cursive;
+  font-size:3.5rem;
+  animation:heartbeat 2s infinite;
+}
+.hero p{margin-top:20px;color:#ffccd5;}
+.hero button{
+  margin-top:40px;
+  padding:15px 40px;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(45deg,var(--red),var(--pink));
+  color:#fff;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 0 20px var(--pink);
+  transition:.3s;
+}
+.hero button:hover{transform:scale(1.1);}
+@keyframes heartbeat{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+
+/* TIMELINE */
+.timeline{
+  max-width:800px;
+  margin:auto;
+}
+.timeline-item{
+  padding:20px;
+  margin:20px 0;
+  border-left:2px solid var(--pink);
+  cursor:pointer;
+}
+.timeline-item:hover{background:var(--glass);}
+
+/* ROSE GARDEN */
+.garden{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+  gap:20px;
+  max-width:900px;
+  margin:auto;
+}
+.rose{
+  font-size:40px;
+  text-align:center;
+  cursor:pointer;
+  transition:.3s;
+}
+.rose:hover{transform:scale(1.4);}
+
+/* FLIP CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:20px;
+}
+.card{
+  perspective:1000px;
+}
+.card-inner{
+  position:relative;
+  width:100%;height:120px;
+  transform-style:preserve-3d;
+  transition:.6s;
+}
+.card:hover .card-inner{transform:rotateY(180deg);}
+.face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:var(--glass);
+  border-radius:10px;
+  padding:10px;
+  text-align:center;
+}
+.back{transform:rotateY(180deg);font-size:.9rem;}
+
+/* SECRET */
+.secret{text-align:center;opacity:.3;}
+.secret:hover{opacity:1;cursor:pointer;}
+
+/* FINAL LETTER */
+.letter{
+  font-family:'Great Vibes',cursive;
+  font-size:2rem;
+  max-width:800px;
+  margin:auto;
+  line-height:1.8;
+  text-align:center;
+}
+
+/* PASSWORD LOCK */
+#passwordLock{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+#passwordLock input{
+  padding:12px 20px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  font-size:1rem;
+}
+#passwordLock button{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:linear-gradient(45deg,var(--red),var(--pink));
+  color:#fff;
+  font-size:1rem;
+}
+</style>
+</head>
+
+<body>
+<div id="passwordLock">
+  <h2>Enter My Secret Garden 🌹</h2>
+  <input type="password" id="passInput" placeholder="Type the secret">
+  <button onclick="checkPassword()">Enter</button>
+</div>
+
+<div class="cursor"></div>
+<div id="loader">
+  <h1>This is not a website…<br>This is my heart, written in code.</h1>
+  <div class="progress"><span></span></div>
+</div>
+
+<section class="hero" id="home">
+  <h1>Happy Rose Day, My Love 🌹</h1>
+  <p>Every rose reminds me of you.</p>
+  <button onclick="document.getElementById('story').scrollIntoView()">Enter My World</button>
+</section>
+
+<section id="story">
+  <h2>Our Love Story</h2>
+  <div class="timeline">
+    <div class="timeline-item">🌹 The Day I Met You</div>
+    <div class="timeline-item">🌹 The Day You Changed My Life</div>
+    <div class="timeline-item">🌹 The Day You Became My Home</div>
+    <div class="timeline-item">🌹 Every Day Since Then</div>
+  </div>
+</section>
+
+<section>
+  <h2>Rose Garden</h2>
+  <div class="garden" id="garden"></div>
+</section>
+
+<section>
+  <h2>Reasons Why I Love You</h2>
+  <div class="cards" id="reasons"></div>
+</section>
+
+<section class="secret" onclick="revealSecret()">
+  🌹 Touch the rose you weren’t meant to notice 🌹
+</section>
+
+<section>
+  <div class="letter" id="letter"></div>
+</section>
+
+<section>
+  <h2 style="text-align:center;">This is only the beginning.</h2>
+</section>
+
+<audio id="music" loop autoplay>
+  <source src="https://files.catbox.moe/2l5l6e.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* PASSWORD LOCK */
+function checkPassword(){
+  const val=document.getElementById('passInput').value;
+  if(val==="Ameeshamywife"){
+    document.getElementById('passwordLock').style.display='none';
+  }else{
+    alert("Wrong password! 🌹 Try again");
+  }
+}
+
+/* Cursor */
+const cursor=document.querySelector('.cursor');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.pageX+'px';
+  cursor.style.top=e.pageY+'px';
+});
+
+/* Loader */
+setTimeout(()=>document.getElementById('loader').style.display='none',5500);
+
+/* LIGHT RAYS */
+for(let i=0;i<5;i++){
+  const ray=document.createElement('div');
+  ray.className='light-ray';
+  ray.style.left=Math.random()*100+'vw';
+  ray.style.animationDuration=(20+Math.random()*20)+'s';
+  ray.style.width=(10+Math.random()*30)+'px';
+  document.body.appendChild(ray);
+}
+
+/* PARTICLES */
+for(let i=0;i<80;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'vw';
+  p.style.top=Math.random()*100+'vh';
+  p.style.animationDuration=(10+Math.random()*20)+'s';
+  p.style.width=p.style.height=(2+Math.random()*3)+'px';
+  document.body.appendChild(p);
+}
+
+/* CINEMATIC PARALLAX ROSES */
+for(let i=0;i<30;i++){
+  const b=document.createElement('div');
+  b.className='bg-rose';
+  b.innerText='🌹';
+  let size=Math.random()*40+20;
+  b.style.fontSize=size+'px';
+  b.style.left=Math.random()*100+'%';
+  let durationFall=8+Math.random()*12;
+  let durationSway=2+Math.random()*4;
+  b.style.animationDuration=durationFall+'s,'+durationSway+'s';
+  b.style.opacity=Math.random()*0.6+0.3;
+  document.body.appendChild(b);
+}
+
+/* Garden Messages */
+const messages=[
+"I love you more every heartbeat ❤️","You are my safe place","You feel like home","I choose you. Always.",
+"My forever rose","You’re my miracle","My heart found you","Love feels easy with you","You’re my destiny",
+"My favorite feeling is you","I bloom because of you","My world begins with you","Every dream has you","You’re my peace",
+"My heart whispers your name","Love lives in your smile","You’re my always","My soul chose you","You are my magic",
+"Forever starts with you","You are my sunshine","You make every moment special","Every second with you is perfect",
+"My heart beats for you","You complete me","You’re my dream come true","My love grows with you","My happiness is you",
+"My soul smiles at you","You are my everything"
+];
+const garden=document.getElementById('garden');
+messages.forEach(m=>{
+  const r=document.createElement('div');
+  r.className='rose';
+  r.innerText='🌹';
+  r.onclick=()=>alert(m);
+  garden.appendChild(r);
+});
+
+/* Reasons */
+const reasonsArr=[
+"Because loving you feels like breathing","Because your smile lights my darkest days","Because your touch makes time stop",
+"Because every word from you is poetry","Because I see forever in your eyes","Because my heart races for you","Because you’re my home",
+"Because you understand my soul","Because your laughter is music","Because you make ordinary magical","Because your love heals me",
+"Because I can be myself with you","Because you inspire me to be better","Because every memory with you is precious","Because you’re my safe harbor",
+"Because you love me without limits","Because you’re my destiny","Because your presence is comfort","Because you make dreams feel real",
+"Because your voice is my favorite sound","Because loving you feels endless","Because you are my peace","Because you complete me",
+"Because my heart chose you","Because you are my miracle","Because I bloom for you","Because your soul shines bright","Because I fall for you daily",
+"Because you are my forever","Because every day with you is a gift"
+];
+const reasons=document.getElementById('reasons');
+reasonsArr.forEach((r,i)=>{
+  reasons.innerHTML+=`
+  <div class="card">
+    <div class="card-inner">
+      <div class="face">Reason ${i+1}</div>
+      <div class="face back">${r}</div>
+    </div>
+  </div>`;
+});
+
+/* Secret */
+function revealSecret(){
+  document.body.style.background='#000';
+  alert("No matter what happens…\nI choose you. Always.");
+}
+
+/* Typewriter Letter */
+const text=`Happy Rose Day, Ameesha 🌹
+You are my forever, my safe place, my dream, and my destiny.
+This website will exist as long as my love does.`;
+let i=0;
+function type(){
+  if(i<text.length){
+    letter.innerHTML+=text.charAt(i);
+    i++; setTimeout(type,80);
+  }
+}
+type();
+</script>
+</body>
+</html>
